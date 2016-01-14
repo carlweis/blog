@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @post.title %></h2>
+<p><%= @post.body %></p>
+
+<h3>Comments</h3>
+
+<%= render @post.comments %>
+
+<h4>Leave a comment:</h4>
+<%= form_for [@post, @post.comments.build] do |f| %>
+    <div class="field">
+      <%= f.text_field :author, :placeholder => 'Name' %>
+    </div>
+    <div class="field">
+      <%= f.email_field :email, :placeholder => 'Email' %>
+    </div>
+    <div class="field">
+      <%= f.text_area :body, :placeholder => 'Comment' %>
+    </div>
+    <div class="field">
+      <%= f.submit 'Leave Comment' %>
+    </div>
+<% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
